@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "- this repository is a programing practice code repository    of the Udemy course [Advanced React and Redux](https://www.udemy.com/react-redux-tutorial/learn/v4/content)    seciton_6 - server setup - Authentication.     It is a node.js based server app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
