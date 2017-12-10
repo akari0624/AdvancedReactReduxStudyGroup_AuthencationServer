@@ -2,12 +2,16 @@ module.exports  = function(app){
 
 
 
-       app.get('/123',(req,res,next)=>{
+       app.get('/123',
+       (req,res,next)=>{
 
-
-           res.send(['watch','mobile','earphone']);
-           
-       });
+            console.log('stucked in here if we did not invoke next() explicitly');
+          //  next();
+       },
+       (req,res,next)=>{
+             res.send(['watch','mobile','earphone']);
+        
+               });
 
 
        app.post('/prettygood',(req,res,next)=>{
