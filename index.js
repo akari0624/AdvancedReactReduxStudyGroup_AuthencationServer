@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const http = require('http');
 
+const router = require('./router');
+
+const PORT = process.env.PORT || 9999;
 
 //App setup
 
@@ -18,8 +21,10 @@ app.use(morgan('combined'));
  app.use(bodyParser.urlencoded({ extended: false }));
  app.use(bodyParser.json({type:'*/*'})); 
 
+ router(app);   // build the router, body-parser的所有設定都必須在這行之前完成
+
 // server setup
-const PORT = process.env.PORT || 9999;
+
 
 
 const server = http.createServer(app);
@@ -29,7 +34,7 @@ server.listen(PORT,()=>{
     });
 
 
-//   17到21 其實這樣寫就可以了
+//   17到21 其實這樣寫就可以了:
 //    https://cnodejs.org/topic/5396cd60c3ee0b5820f00e2a
 
 // app.listen(PORT,()=>{
@@ -37,10 +42,3 @@ server.listen(PORT,()=>{
 // });    
 
 
-app.post('/',(req,res,next)=>{
-
-
-    console.log('theName :',req.body.name);
-
-    res.send('you are pretty good');
-});
