@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
-
-const schema = mongoose.schema;
+const mongoose  = require('mongoose');
+const Schema = mongoose.Schema;
 
 // define our model
 const userSchema = new Schema({
@@ -13,4 +12,4 @@ const ModelClass = mongoose.model('user',userSchema);
 
 // export the model
 
-model.exports = ModelClass;
+module.exports = ModelClass;
