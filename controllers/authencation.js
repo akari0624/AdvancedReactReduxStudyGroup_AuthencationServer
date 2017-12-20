@@ -39,7 +39,7 @@ exports.signup = function(req, res, next){
         }
 
 // Respond to response  to indicating the user was created
-        res.send({msg:`user ${email} create success`});
+        res.json({msg:`user ${email} create success`});
     });
     
 
