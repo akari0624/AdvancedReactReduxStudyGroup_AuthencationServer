@@ -4,7 +4,10 @@ const config = require("../config");
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 
-const jwtOptions = {};
+const jwtOptions = {
+    jwtFromRequest: ExtractJwt.fromHeader("authorization"),
+    secretOrKey: config.secrect
+};
 
 // create jwt strategy
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
@@ -13,7 +16,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
   //otherwise, call done without a user object
 
   const id = payload.sub;
-  UserModel.findOne(id)
+  UserModel.findById(id)
     .then(user => {
       if (user) {
         return done(null, user);
@@ -27,3 +30,4 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 });
 
 // tell passport to use this strategy
+passport.use(jwtLogin);
