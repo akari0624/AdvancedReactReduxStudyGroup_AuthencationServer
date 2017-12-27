@@ -1,9 +1,12 @@
-const Authencation = require('./controllers/authencation');
+const Authencation = require("./controllers/authencation");
+const passportService = require("./services/passport");
+const passport = require("passport");
 
-module.exports  = function(app){
+const requireAuth = passport.authenticate("jwt", { session: false });
 
-
-      app.post('/signup',Authencation.signup);
-      
-
-}
+module.exports = function(app) {
+  app.get("/", requireAuth, (req, res) => {
+    res.send({ hi: "there" });
+  });
+  app.post("/signup", Authencation.signup);
+};
