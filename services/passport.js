@@ -31,3 +31,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 
 // tell passport to use this strategy
 passport.use(jwtLogin);
+
+exports.requireJWTAuth = passport.authenticate("jwt", { session: false });
