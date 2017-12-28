@@ -13,6 +13,12 @@ function tokenForUser(user) {
   );
 }
 
+exports.signIn = (req, res, next) => {
+  // user has already had their email and password authed
+  // we just need to give them a token
+  res.send({token:tokenForUser(req.user)});
+};
+
 exports.signup = function(req, res, next) {
   // See if a user with the given email exists
   const email = req.body.email;
@@ -21,7 +27,6 @@ exports.signup = function(req, res, next) {
   if (!email || !password) {
     return res.status(422).send({ error: "please provide email and password" });
   }
-
 
   UserModel.findOne({ email: email })
     .then(existUser => {
@@ -47,6 +52,6 @@ exports.signup = function(req, res, next) {
         });
     })
     .catch(err => {
-        return next(err);
+      return next(err);
     });
 };
